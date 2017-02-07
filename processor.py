@@ -79,21 +79,21 @@ def intP2H(lvls,hgt,gph,tmp,vpr,cdic,verbose=False):
 		eFlag = False
 		if (hx.min() > minAlt):          #Add point at start
 			sFlag = True
-			hx = np.concatenate((hx,[minAlt-1]),axis = 0) #changed from 1 to 0 (-1 should also work), CL
+			hx = np.concatenate((hx,[minAlt-1]), axis=0)
 
 		if (hx.max() < maxAlt):		#Add point at end
 			eFlag = True
-			hx = np.concatenate(([maxAlt+1],hx),axis=0) #changed from 1 to 0 (-1 should also work), CL
+			hx = np.concatenate(([maxAlt+1],hx), axis=0)
 
 		hx = -hx             #Splines needs monotonically increasing.	
 	
 		hy = lvls.copy()     #Interpolating pressure values
 		if (sFlag == True):
 			val = hy[-1] +(hx[-1] - hx[-2])* (hy[-1] - hy[-2])/(hx[-2]-hx[-3])
-			hy = np.concatenate((hy,[val]),axis=0) #changed from 1 to 0 (-1 should also work), CL
+			hy = np.concatenate((hy,[val]),axis=0)
 		if (eFlag == True):
 			val = hy[0] - (hx[0] - hx[1]) * (hy[0] - hy[1])/(hx[1]-hx[2]) 
-			hy = np.concatenate(([val],hy),axis=0) #changed from 1 to 0 (-1 should also work), CL
+			hy = np.concatenate(([val],hy),axis=0)
 
         	tck = intp.interp1d(hx,hy,kind='cubic')
 		temp = tck(-hgt)      #Again negative for consistency with hx
@@ -104,10 +104,10 @@ def intP2H(lvls,hgt,gph,tmp,vpr,cdic,verbose=False):
 		hy = temp.copy()
 		if (sFlag == True):
 			val = hy[-1] +(hx[-1] - hx[-2])* (hy[-1] - hy[-2])/(hx[-2]-hx[-3])
-			hy = np.concatenate((hy,[val]),axis=0) #changed from 1 to 0 (-1 should also work), CL
+			hy = np.concatenate((hy,[val]),axis=0)
 		if (eFlag == True):
 			val = hy[0] - (hx[0] - hx[1]) * (hy[0] - hy[1])/(hx[1]-hx[2])
-			hy = np.concatenate(([val],hy),axis=0) #changed from 1 to 0 (-1 should also work), CL
+			hy = np.concatenate(([val],hy),axis=0)
 
 
 		tck = intp.interp1d(hx,hy,kind='cubic')
@@ -119,10 +119,10 @@ def intP2H(lvls,hgt,gph,tmp,vpr,cdic,verbose=False):
 		hy = temp.copy()
 		if (sFlag == True):
 			val = hy[-1] +(hx[-1] - hx[-2])* (hy[-1] - hy[-2])/(hx[-2]-hx[-3])
-			hy = np.concatenate((hy,[val]),axis=0) #changed from 1 to 0 (-1 should also work), CL
+			hy = np.concatenate((hy,[val]),axis=0)
 		if (eFlag == True):
 			val = hy[0] - (hx[0] - hx[1]) * (hy[0] - hy[1])/(hx[1]-hx[2])
-			hy = np.concatenate(([val],hy),axis=0) #changed from 1 to 0 (-1 should also work), CL
+			hy = np.concatenate(([val],hy),axis=0)
 
 
 		tck = intp.interp1d(hx,hy,kind='cubic')

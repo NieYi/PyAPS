@@ -215,7 +215,7 @@ def rdr2glob(wid,lgt,lat,lon,x,y,plotflag='n'):   #nx,ny,lat,lon,latl,lonl,plotf
 
         #Get grid points xi yi coordinates from this mapping function
         nstn=len(x)
-        A=np.array([x, y, np.ones((nstn,1))]).T
+        A=np.array([x, y, np.ones(nstn)]).T
         lati=np.dot(A,mfcn[:,0])
         loni=np.dot(A,mfcn[:,1])
 
