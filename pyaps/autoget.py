@@ -26,6 +26,13 @@ def ECMWFdload(bdate,hr,filedir,humidity='Q'):
                 humidparam = 157
         flist = []
 
+        ## param - http://apps.ecmwf.int/codes/grib/param-db (Yunjun, May 2017)
+        # 129 - At the surface: orography
+        # 130 - Temperature
+        # 133 - Grid box mean (mass of water vapour / mass of moist air)
+        # 157 - Relative humidity is defined with respect to saturation of the mixed phase, 
+        #       i.e. with respect to saturation over ice below -23C and with respect to saturation over water above 0C.
+        #       In the regime in between a quadratic interpolation is applied.
         for k in xrange(len(bdate)):
                 day = bdate[k]
                 fname = '%s/ERA-Int_%s_%s.grb'%(filedir,day,hr)
